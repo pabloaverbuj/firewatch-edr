@@ -1,0 +1,26 @@
+# Environment — never commit secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker override files
+docker-compose.override.yml
+
+# Editor
+.vscode/
+.idea/
+*.swp
