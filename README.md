@@ -4,15 +4,31 @@ AI-powered Endpoint Detection & Response platform with autonomous remediation en
 
 ## Install
 
+### Linux / macOS
+
 ```bash
-wget -q https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/main/docker-compose.yml
-wget -q https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/main/.env.example -O .env
+wget -q https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/master/docker-compose.yml
+wget -q https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/master/.env.example -O .env
 ```
+
+### Windows (PowerShell)
+
+```powershell
+curl.exe -O https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/master/docker-compose.yml
+curl.exe -O https://raw.githubusercontent.com/pabloaverbuj/firewatch-edr/master/.env.example
+Rename-Item .env.example .env
+```
+
+---
 
 Edit `.env` — the only required value is `ANTHROPIC_API_KEY`:
 
 ```bash
+# Linux / macOS
 nano .env
+
+# Windows
+notepad .env
 ```
 
 Launch:
