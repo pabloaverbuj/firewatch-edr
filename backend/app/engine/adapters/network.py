@@ -13,6 +13,8 @@ class NetworkIsolateAdapter(BaseAdapter):
     async def execute(self, params: dict, tenant_config: dict) -> AdapterResult:
         # params: {"mac": "AA:BB:CC:DD:EE:FF", "endpoint_name": "PC-CONTADURIA-01"}
         cfg = tenant_config.get("mikrotik", {})
+        if not cfg.get("host"):
+            return AdapterResult(success=True, output={"demo": True, "simulated": "network_isolate", "endpoint": params.get("endpoint_name")})
         try:
             api = _connect(cfg)
             mac = params["mac"]
@@ -51,6 +53,8 @@ class BlockIPAdapter(BaseAdapter):
     async def execute(self, params: dict, tenant_config: dict) -> AdapterResult:
         # params: {"ip": "185.220.101.47", "reason": "C2 Emotet"}
         cfg = tenant_config.get("mikrotik", {})
+        if not cfg.get("host"):
+            return AdapterResult(success=True, output={"demo": True, "simulated": "block_ip", "ip": params.get("ip")})
         try:
             api = _connect(cfg)
             ip = params["ip"]

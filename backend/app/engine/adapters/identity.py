@@ -13,6 +13,9 @@ class BlockUserAdapter(BaseAdapter):
 
     async def execute(self, params: dict, tenant_config: dict) -> AdapterResult:
         # params: {"user_id": "...", "upn": "maria.gomez@company.com"}
+        cfg = tenant_config.get("entra_id", {})
+        if not cfg.get("tenant_id"):
+            return AdapterResult(success=True, output={"demo": True, "simulated": "identity_block_user", "user": params.get("upn")})
         token = await _get_token(tenant_config)
         user_id = params.get("user_id") or params.get("upn")
         try:
@@ -51,6 +54,9 @@ class RevokeSessionsAdapter(BaseAdapter):
 
     async def execute(self, params: dict, tenant_config: dict) -> AdapterResult:
         # params: {"user_id": "...", "upn": "..."}
+        cfg = tenant_config.get("entra_id", {})
+        if not cfg.get("tenant_id"):
+            return AdapterResult(success=True, output={"demo": True, "simulated": "identity_revoke_sessions", "user": params.get("upn")})
         token = await _get_token(tenant_config)
         user_id = params.get("user_id") or params.get("upn")
         try:
